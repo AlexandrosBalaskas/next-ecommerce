@@ -30,10 +30,14 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
         </div>
       </div>
       {/* FILTER */}
-      <Filter />
+      <Suspense fallback={<Skeleton />}>
+        <Filter />
+      </Suspense>
       {/* PRODUCTS */}
-      <h1 className="mt-12 text-xl font-semibold">{cat?.collection?.name} For You!</h1>
-      <Suspense fallback={<Skeleton/>}>
+      <h1 className="mt-12 text-xl font-semibold">
+        {cat?.collection?.name} For You!
+      </h1>
+      <Suspense fallback={<Skeleton />}>
         <ProductList
           categoryId={
             cat.collection?._id || "00000000-000000-000000-000000000001"
